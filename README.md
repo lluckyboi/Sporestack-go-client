@@ -1,2 +1,2 @@
-# Sporestack-go-client
+# gosporestack
 go sdk for Sporestack
