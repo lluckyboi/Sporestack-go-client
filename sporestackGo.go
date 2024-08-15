@@ -29,6 +29,7 @@ type Client struct {
 	hclient *retryablehttp.Client
 
 	TokenInfo *TokenInfoService
+	Server    *ServerService
 }
 
 func NewClient(token string) *Client {
