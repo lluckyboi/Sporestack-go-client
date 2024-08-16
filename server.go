@@ -219,3 +219,16 @@ func (ss *ServerService) Rebuild(machineId string) (string, error) {
 	}
 	return s, nil
 }
+
+// Stop Immediately powers off the server.
+func (ss *ServerService) Stop(machineId string) (string, error) {
+	req, err := ss.client.NewRequest("POST", "/server/"+machineId+"/stop", nil)
+	if err != nil {
+		return "", err
+	}
+	s := ""
+	if err := ss.client.DoRequest(req, &s); err != nil {
+		return "", err
+	}
+	return s, nil
+}
