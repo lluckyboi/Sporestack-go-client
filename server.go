@@ -232,3 +232,28 @@ func (ss *ServerService) Stop(machineId string) (string, error) {
 	}
 	return s, nil
 }
+// Start Powers the server on.
+func (ss *ServerService) Start(machineId string) (string, error) {
+	req, err := ss.client.NewRequest("POST", "/server/"+machineId+"/start", nil)
+	if err != nil {
+		return "", err
+	}
+	s := ""
+	if err := ss.client.DoRequest(req, &s); err != nil {
+		return "", err
+	}
+	return s, nil
+}
+
+// Info Returns information about the server.
+func (ss *ServerService) Info(machineId string) (*Machine, error) {
+	req, err := ss.client.NewRequest("POST", "/server/"+machineId+"/info", nil)
+	if err != nil {
+		return nil, err
+	}
+	s := Machine{}
+	if err := ss.client.DoRequest(req, &s); err != nil {
+		return nil, err
+	}
+	return &s, nil
+}
